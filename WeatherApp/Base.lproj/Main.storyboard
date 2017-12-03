@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oFH-ax-ePj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
+        <!--City List View Controller-->
+        <scene sceneID="7Wg-xC-3XQ">
+            <objects>
+                <viewController id="oFH-ax-ePj" customClass="CityListViewController" customModule="WeatherApp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pXt-Ri-G8j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VbC-CV-DqL">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityDetail" id="hQx-4r-WqN" customClass="CityTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hQx-4r-WqN" id="uGg-N3-6o5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-jw-YXS">
+                                                    <rect key="frame" x="8" y="8" width="359" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="101" id="Nvg-wX-lmm"/>
+                                                        <constraint firstAttribute="height" constant="36.5" id="gbA-AC-eTc"/>
+                                                        <constraint firstAttribute="width" constant="359" id="hlG-UX-CpV"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="359" id="hx0-dr-owd"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="city" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzI-qT-gXy">
+                                                    <rect key="frame" x="31" y="87" width="343" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="9WB-B9-Hha"/>
+                                                        <constraint firstAttribute="width" constant="343" id="Etf-pN-Pn2"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="329" id="lXI-Jh-FfZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OzI-qT-gXy" firstAttribute="leading" secondItem="uGg-N3-6o5" secondAttribute="leadingMargin" constant="16" id="2d4-yA-ezj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="OzI-qT-gXy" secondAttribute="trailing" constant="16" id="6Gx-HW-Sdc"/>
+                                                <constraint firstItem="wxO-jw-YXS" firstAttribute="top" secondItem="uGg-N3-6o5" secondAttribute="top" constant="8" id="DNd-5h-QA3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="OzI-qT-gXy" secondAttribute="bottom" constant="16" id="KBi-hd-dhZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="wxO-jw-YXS" secondAttribute="bottom" constant="8" id="LXp-ZK-fq9"/>
+                                                <constraint firstItem="OzI-qT-gXy" firstAttribute="top" secondItem="uGg-N3-6o5" secondAttribute="topMargin" constant="76" id="Lek-YY-gyM"/>
+                                                <constraint firstItem="wxO-jw-YXS" firstAttribute="leading" secondItem="uGg-N3-6o5" secondAttribute="leading" constant="8" id="PdM-V8-bMH"/>
+                                                <constraint firstAttribute="trailing" secondItem="wxO-jw-YXS" secondAttribute="trailing" constant="8" id="fYe-PT-0aK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cityImageView" destination="wxO-jw-YXS" id="Bu0-8J-hEA"/>
+                                            <outlet property="cityNameText" destination="OzI-qT-gXy" id="si5-yd-wkT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VbC-CV-DqL" firstAttribute="leading" secondItem="EiL-RZ-sfq" secondAttribute="leading" id="K8Z-nU-TqM"/>
+                            <constraint firstItem="EiL-RZ-sfq" firstAttribute="trailing" secondItem="VbC-CV-DqL" secondAttribute="trailing" id="WDa-tv-nxa"/>
+                            <constraint firstItem="EiL-RZ-sfq" firstAttribute="bottom" secondItem="VbC-CV-DqL" secondAttribute="bottom" id="dDW-DG-k74"/>
+                            <constraint firstItem="VbC-CV-DqL" firstAttribute="top" secondItem="EiL-RZ-sfq" secondAttribute="top" id="mYZ-Ti-Iqa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EiL-RZ-sfq"/>
+                    </view>
+                    <connections>
+                        <outlet property="cityTableView" destination="VbC-CV-DqL" id="rND-LT-gcb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oba-ve-nOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-802.39999999999998" y="106.59670164917542"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>

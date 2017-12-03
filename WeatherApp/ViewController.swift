@@ -63,10 +63,10 @@ class ViewController: UIViewController {
                         print("no humidity")
                         return
                     }
-                    /*guard let temp = mainDict["temp"] as? String else {
+                    guard let temp = mainDict["temp"] as? Any else {
                         print("no temp")
                         return
-                    }*/
+                    }
                     guard let locationName = weatherInfo["name"] as? String else {
                         print("no location name")
                         return}
@@ -74,7 +74,10 @@ class ViewController: UIViewController {
                         self.progressBar.stopAnimating()
                         self.progressBar.isHidden = true
                         self.textLocation.text = "Location Name: " + locationName
-                       // self.textTemp.text = "Temprature: " + String(temp)
+                        if let temp:String = String(describing: temp) {
+                                self.textTemp.text = "Temprature: " + temp
+                        }
+                        
                         self.textHumidity.text = "Humidity: " + String(humidity)}
                     )
                 } catch {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //https://console.developers.google.com/apis/credentials?project=weatherapp-1508757636778&authuser=0
+        GMSServices.provideAPIKey("AIzaSyAntHhWuKkHkwAimxoCPHRAYgt_CJDkhMk")
+        //GMSPlacesClient.provideAPIKey("AIzaSyAntHhWuKkHkwAimxoCPHRAYgt_CJDkhMk")
         // Override point for customization after application launch.
         return true
     }
