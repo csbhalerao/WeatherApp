@@ -45,4 +45,11 @@ class CityListViewController: UIViewController {
             cell.setCityDetails(cityModel: cityModel)
             return cell
         }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let detailViewController = storyBoard.instantiateViewController(withIdentifier: "CityWeatherViewController") as! CityWeatherViewController
+            detailViewController.city = cityModels[indexPath.row]
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
