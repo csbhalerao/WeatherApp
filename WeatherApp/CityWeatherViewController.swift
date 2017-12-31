@@ -35,6 +35,27 @@ class CityWeatherViewController: UIViewController {
         
         var parameters: [String: AnyObject] = ["lat": city?.latitude as AnyObject, "lon": city?.longitude as AnyObject, "APPID": APP_ID as AnyObject, "units": "metric" as AnyObject]
         
-        Alamofire.request(API_URL, method: .get, parameters: parameters).responseData(completionHandler: <#T##(DataResponse<Data>) -> Void#>)
+        Alamofire.request(API_URL, method: .get, parameters: parameters).responseString{
+            response in
+            switch (response.result){
+            case .success(let responseString):
+                print(responseString)
+                let cityResponse = CityWeatherDetailResponse(JSONString: "\(responseString)")
+                if let cityWeather = cityResponse?.cityWeather{
+                    if let temp = cityWeather.temp {
+                        self.tempratureText.text = "Temp : " + String(temp)
+                    }
+                    if let humidity = cityWeather.humidity {
+                        self.humidityText.text = "Humidity : " + String(humidity)
+                    }
+                }
+
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        
+        
     }
 }
