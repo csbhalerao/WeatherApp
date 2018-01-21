@@ -26,7 +26,22 @@ class CityWeatherViewController: UIViewController {
     
     func populateCityDetails(){
         cityNameText.text = city?.name
-        cityImage.image = city?.cityImage
+        //cityImage.image = city?.cityImage
+        populateCityImage()
+    }
+    
+    func populateCityImage(){
+        
+        if let cityUrl = city?.cityUrl{
+            Alamofire.request(cityUrl).responseData { (response) in
+                if response.error == nil {
+                    if let data = response.data {
+                        self.cityImage.image = UIImage(data: data)!
+                    }
+                }
+            }
+            
+        }
     }
     
     func getWeatherInfo()  {
@@ -39,7 +54,7 @@ class CityWeatherViewController: UIViewController {
             response in
             switch (response.result){
             case .success(let responseString):
-                print(responseString)
+                //   print(responseString)
                 let cityResponse = CityWeatherDetailResponse(JSONString: "\(responseString)")
                 if let cityWeather = cityResponse?.cityWeather{
                     if let temp = cityWeather.temp {
@@ -49,7 +64,7 @@ class CityWeatherViewController: UIViewController {
                         self.humidityText.text = "Humidity : " + String(humidity)
                     }
                 }
-
+                
             case .failure(let error):
                 print(error)
             }

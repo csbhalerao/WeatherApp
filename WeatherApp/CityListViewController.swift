@@ -7,49 +7,71 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Alamofire
 
 class CityListViewController: UIViewController {
-
+    
     @IBOutlet weak var cityTableView: UITableView!
     var cityModels:[CityModel] = []
+    var cityViewModels:[CityViewModel] = []
+    var ref: DatabaseReference!
+    var CITIES_KEY = "cities"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cityTableView.dataSource = self
         cityTableView.delegate = self
-        cityModels = populateCityValues()
+        populateCityValues()
     }
     
-    func populateCityValues() -> [CityModel] {
-        var tempCities:[CityModel] = []
-        let puneCity = CityModel(name:"Pune", latitude: 18.52041212, longitude: 73.8567323, cityImage: #imageLiteral(resourceName: "pune"))
-        let mumbaiCity = CityModel(name:"Mumbai", latitude: 19.0728300, longitude: 72.8826100, cityImage:#imageLiteral(resourceName: "mumbai"))
-        let bangaloreCity = CityModel(name:"Bangalore", latitude: 12.9715987, longitude: 77.5945627, cityImage:#imageLiteral(resourceName: "bangalore"))
-        let delhiCity = CityModel(name:"Delhi", latitude: 28.644800, longitude: 77.216721, cityImage:#imageLiteral(resourceName: "delhi"))
-        
-        tempCities.append(puneCity)
-        tempCities.append(mumbaiCity)
-        tempCities.append(bangaloreCity)
-        tempCities.append(delhiCity)
-        
-        return tempCities
+    func populateCityValues()  {
+        ref = Database.database().reference()
+        ref.child(CITIES_KEY).observe(.value, with:{ snapshot in
+            //print(snapshot.childrenCount)
+            print(snapshot)
+            if snapshot.childrenCount > 0 {
+                self.cityModels.removeAll()
+                self.cityViewModels.removeAll()
+                for cities in snapshot.children.allObjects as! [DataSnapshot] {
+                    //getting values
+                    let citiesObject = cities.value as? [String: AnyObject]
+                    let cityName  = citiesObject?["name"]
+                    let latitude  = citiesObject?["latitude"]
+                    let longitude = citiesObject?["longitude"]
+                    let imageUrl = citiesObject?["imageUrl"]
+                    let city = CityModel(name:cityName as! String, latitude:latitude as! Double, longitude:longitude as! Double, cityUrl:imageUrl as! String)
+                    self.cityModels.append(city)
+                }
+                self.cityTableView.reloadData()
+            }
+            
+        })
     }
 }
-    extension CityListViewController:  UITableViewDataSource, UITableViewDelegate{
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return cityModels.count
-        }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cityModel = cityModels[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CityDetail") as! CityTableViewCell
-            cell.setCityDetails(cityModel: cityModel)
-            return cell
-        }
-        
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let detailViewController = storyBoard.instantiateViewController(withIdentifier: "CityWeatherViewController") as! CityWeatherViewController
-            detailViewController.city = cityModels[indexPath.row]
-            self.navigationController?.pushViewController(detailViewController, animated: true)
-        }
+extension CityListViewController:  UITableViewDataSource, UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cityModels.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cityModel = cityModels[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CityDetail") as! CityTableViewCell
+        cell.setCityDetails(cityModel: cityModel)
+        Alamofire.request(cityModel.cityUrl).responseData { (response) in
+            if response.error == nil {
+                if let data = response.data {
+                    cell.setCityImage(cityImage: UIImage(data: data)!)
+                }
+            }
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = storyBoard.instantiateViewController(withIdentifier: "CityWeatherViewController") as! CityWeatherViewController
+        detailViewController.city = cityModels[indexPath.row]
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+}

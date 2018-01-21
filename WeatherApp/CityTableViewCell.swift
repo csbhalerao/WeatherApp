@@ -9,12 +9,17 @@
 import UIKit
 
 class CityTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var cityImageView: UIImageView!
     @IBOutlet weak var cityNameText: UILabel!
     
     func setCityDetails(cityModel: CityModel){
-        cityImageView.image = cityModel.cityImage
         cityNameText.text = cityModel.name.capitalized
+    }
+    
+    func setCityImage(cityImage: UIImage) {
+        if(cityImage != nil){
+            cityImageView.image = cityImage
+        }
     }
 }

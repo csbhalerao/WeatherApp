@@ -6,6 +6,7 @@ target 'WeatherApp' do
   pod 'GooglePlaces'
   pod 'Alamofire', '~> 4.5'
   pod 'ObjectMapper', '~> 2.2'
+  pod 'Firebase/Database'
 end
 
 post_install do |installer|
