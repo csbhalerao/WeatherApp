@@ -17,6 +17,7 @@ class CityWeatherViewController: UIViewController {
     
     
     var city: CityModel?
+    var cityUIImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,16 +32,18 @@ class CityWeatherViewController: UIViewController {
     }
     
     func populateCityImage(){
-        
-        if let cityUrl = city?.cityUrl{
-            Alamofire.request(cityUrl).responseData { (response) in
-                if response.error == nil {
-                    if let data = response.data {
-                        self.cityImage.image = UIImage(data: data)!
+        if self.cityUIImage != nil{
+            cityImage.image = self.cityUIImage
+        } else {
+            if let cityUrl = city?.cityUrl{
+                Alamofire.request(cityUrl).responseData { (response) in
+                    if response.error == nil {
+                        if let data = response.data {
+                            self.cityImage.image = UIImage(data: data)!
+                        }
                     }
                 }
             }
-            
         }
     }
     

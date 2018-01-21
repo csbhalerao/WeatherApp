@@ -70,8 +70,11 @@ extension CityListViewController:  UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let cell = self.cityTableView.cellForRow(at: indexPath) as! CityTableViewCell
+        
         let detailViewController = storyBoard.instantiateViewController(withIdentifier: "CityWeatherViewController") as! CityWeatherViewController
         detailViewController.city = cityModels[indexPath.row]
+        detailViewController.cityUIImage = cell.cityImageView.image!
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
