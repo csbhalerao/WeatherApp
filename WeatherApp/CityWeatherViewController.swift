@@ -8,12 +8,15 @@
 
 import UIKit
 import Alamofire
+import GoogleMaps
 class CityWeatherViewController: UIViewController {
     
     @IBOutlet weak var cityNameText: UILabel!
     @IBOutlet weak var cityImage: UIImageView!
     @IBOutlet weak var humidityText: UILabel!
     @IBOutlet weak var tempratureText: UILabel!
+    
+    @IBOutlet weak var mapView: GMSMapView!
     
     
     var city: CityModel?
@@ -27,8 +30,20 @@ class CityWeatherViewController: UIViewController {
     
     func populateCityDetails(){
         cityNameText.text = city?.name
-        //cityImage.image = city?.cityImage
         populateCityImage()
+        drawMapContent()
+    }
+    
+    func drawMapContent(){
+        let camera = GMSCameraPosition.camera(withLatitude: city?.latitude ?? 0.0, longitude: city?.longitude ?? 0.0, zoom: 12.0)
+        mapView.camera = camera
+        
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: city?.latitude ?? 0.0, longitude: city?.longitude ?? 0.0)
+        marker.title = city?.name
+        marker.snippet = city?.name
+        marker.map = mapView
     }
     
     func populateCityImage(){

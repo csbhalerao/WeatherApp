@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //https://console.developers.google.com/apis/credentials?project=weatherapp-1508757636778&authuser=0
-        GMSServices.provideAPIKey("AIzaSyAntHhWuKkHkwAimxoCPHRAYgt_CJDkhMk")
+        GMSServices.provideAPIKey("AIzaSyAAztlfOsHAEcfpM8Tlm9iYkQei7lN_6TM")
+        //GMSServices.provideAPIKey("AIzaSyAntHhWuKkHkwAimxoCPHRAYgt_CJDkhMk")
         //GMSPlacesClient.provideAPIKey("AIzaSyAntHhWuKkHkwAimxoCPHRAYgt_CJDkhMk")
         // Override point for customization after application launch.
         FirebaseApp.configure()

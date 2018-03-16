@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WGC-DN-lJm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WGC-DN-lJm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -39,7 +39,6 @@
                                                     <rect key="frame" x="16" y="8" width="359" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="Pww-oD-iW0"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="gMM-bD-Hcs"/>
                                                         <constraint firstAttribute="height" constant="36.5" id="gbA-AC-eTc"/>
                                                         <constraint firstAttribute="width" constant="359" id="hlG-UX-CpV"/>
                                                     </constraints>
@@ -64,7 +63,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="wxO-jw-YXS" secondAttribute="bottom" constant="16" id="LXp-ZK-fq9"/>
                                                 <constraint firstItem="OzI-qT-gXy" firstAttribute="top" secondItem="uGg-N3-6o5" secondAttribute="topMargin" constant="76" id="Lek-YY-gyM"/>
                                                 <constraint firstItem="wxO-jw-YXS" firstAttribute="leading" secondItem="uGg-N3-6o5" secondAttribute="leading" constant="16" id="PdM-V8-bMH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wxO-jw-YXS" secondAttribute="bottom" constant="21" id="ZxX-uq-RXb"/>
                                                 <constraint firstAttribute="trailing" secondItem="wxO-jw-YXS" secondAttribute="trailing" constant="16" id="fYe-PT-0aK"/>
+                                                <constraint firstItem="wxO-jw-YXS" firstAttribute="top" secondItem="uGg-N3-6o5" secondAttribute="topMargin" constant="-23" id="wQD-6x-sE0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -126,24 +127,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AHo-ZD-hwU" customClass="GMSMapView">
+                                <rect key="frame" x="16" y="303" width="343" height="348"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="P40-ac-3nd" firstAttribute="trailing" secondItem="bd8-5t-PVp" secondAttribute="trailing" id="05r-q7-QjP"/>
+                            <constraint firstItem="AHo-ZD-hwU" firstAttribute="leading" secondItem="FrC-iP-f1p" secondAttribute="leading" constant="16" id="1N2-J7-cpU"/>
                             <constraint firstItem="D1Z-sM-BRh" firstAttribute="top" secondItem="bd8-5t-PVp" secondAttribute="bottom" constant="16" id="3Qg-g2-5qt"/>
                             <constraint firstItem="8eW-xF-CE0" firstAttribute="trailing" secondItem="bd8-5t-PVp" secondAttribute="trailing" id="6Sc-2d-swB"/>
                             <constraint firstItem="FrC-iP-f1p" firstAttribute="trailing" secondItem="D1Z-sM-BRh" secondAttribute="trailing" constant="16" id="7Fd-ql-AGs"/>
                             <constraint firstItem="FrC-iP-f1p" firstAttribute="trailing" secondItem="bd8-5t-PVp" secondAttribute="trailing" constant="16" id="8te-8C-BbV"/>
+                            <constraint firstItem="FrC-iP-f1p" firstAttribute="trailing" secondItem="AHo-ZD-hwU" secondAttribute="trailing" constant="16" id="FZh-Mk-jrg"/>
                             <constraint firstItem="D1Z-sM-BRh" firstAttribute="top" secondItem="bd8-5t-PVp" secondAttribute="bottom" constant="8" symbolic="YES" id="HqD-Tr-sRo"/>
                             <constraint firstItem="D1Z-sM-BRh" firstAttribute="leading" secondItem="FrC-iP-f1p" secondAttribute="leading" constant="16" id="IV5-wj-ks6"/>
                             <constraint firstItem="8eW-xF-CE0" firstAttribute="leading" secondItem="bd8-5t-PVp" secondAttribute="leading" id="IiC-sd-PAx"/>
                             <constraint firstItem="8eW-xF-CE0" firstAttribute="top" secondItem="P40-ac-3nd" secondAttribute="bottom" constant="8" symbolic="YES" id="L6l-we-4qr"/>
+                            <constraint firstItem="AHo-ZD-hwU" firstAttribute="top" secondItem="8eW-xF-CE0" secondAttribute="bottom" constant="16" id="NEI-Bp-3F7"/>
                             <constraint firstItem="bd8-5t-PVp" firstAttribute="leading" secondItem="FrC-iP-f1p" secondAttribute="leading" constant="16" id="QQp-Se-EXJ"/>
                             <constraint firstItem="8eW-xF-CE0" firstAttribute="leading" secondItem="FrC-iP-f1p" secondAttribute="leading" constant="16" id="Rnt-66-1zx"/>
                             <constraint firstItem="FrC-iP-f1p" firstAttribute="trailing" secondItem="P40-ac-3nd" secondAttribute="trailing" constant="16" id="Y27-1A-Nxw"/>
                             <constraint firstItem="P40-ac-3nd" firstAttribute="leading" secondItem="FrC-iP-f1p" secondAttribute="leading" constant="16" id="ZDy-vP-erZ"/>
                             <constraint firstItem="P40-ac-3nd" firstAttribute="top" secondItem="D1Z-sM-BRh" secondAttribute="bottom" constant="8" symbolic="YES" id="al5-AI-YJd"/>
                             <constraint firstItem="P40-ac-3nd" firstAttribute="top" secondItem="D1Z-sM-BRh" secondAttribute="bottom" constant="16" id="awF-3Y-x5Q"/>
+                            <constraint firstItem="FrC-iP-f1p" firstAttribute="bottom" secondItem="AHo-ZD-hwU" secondAttribute="bottom" constant="16" id="b06-uQ-5qy"/>
                             <constraint firstItem="D1Z-sM-BRh" firstAttribute="top" secondItem="bd8-5t-PVp" secondAttribute="bottom" constant="16" id="bIt-6X-cBK"/>
                             <constraint firstItem="8eW-xF-CE0" firstAttribute="top" secondItem="P40-ac-3nd" secondAttribute="bottom" constant="16" id="elb-i6-eub"/>
                             <constraint firstItem="D1Z-sM-BRh" firstAttribute="leading" secondItem="bd8-5t-PVp" secondAttribute="leading" id="fY4-G6-dkn"/>
@@ -159,6 +168,7 @@
                         <outlet property="cityImage" destination="bd8-5t-PVp" id="olJ-qK-Urn"/>
                         <outlet property="cityNameText" destination="D1Z-sM-BRh" id="Pck-n4-0dN"/>
                         <outlet property="humidityText" destination="8eW-xF-CE0" id="Zo7-Uw-H43"/>
+                        <outlet property="mapView" destination="AHo-ZD-hwU" id="V8c-rw-hWp"/>
                         <outlet property="tempratureText" destination="P40-ac-3nd" id="f2N-my-bBU"/>
                     </connections>
                 </viewController>
